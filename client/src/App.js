@@ -8,15 +8,11 @@ const App = () => {
   const [state, setState] = useState( { localValue: 0, storageValue: 0, web3: null, accounts: null, contract: null, transaction : null })
 
   const get = async () => {
-    const { contract } = state
-    const response = await contract?.methods?.get().call()
-    setState({...state, storageValue: response})
+    /* call get methods here */
   };
 
   const set = async () => {
-    const { contract, accounts } = state
-    await contract?.methods.set(state.localValue).send({ from : accounts[0]})
-    get()
+   /* set new value here */
   }
 
   useEffect(() => {
@@ -50,13 +46,6 @@ const App = () => {
     })()
   }, [])
 
-  useEffect(() => {
-    setState({...state, transaction: "pending"})
-  }, [state.contract])
-
-  useEffect(() => {
-   get()
-  }, [state.contract])
 
   if (!state.web3) {
     return <div>Loading Web3, accounts, and contract...</div>;
